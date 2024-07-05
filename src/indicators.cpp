@@ -1,6 +1,7 @@
 #include "indicators.h"
 #include <numeric>
 #include <algorithm>
+#include <cmath>
 
 std::vector<double> calculateRSI(const std::vector<double>& closePrices, int period) {
     std::vector<double> rsi(closePrices.size(), 0.0);
