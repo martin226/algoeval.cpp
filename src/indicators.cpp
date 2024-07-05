@@ -64,3 +64,25 @@ std::vector<double> calculateSMA(const std::vector<double>& closePrices, int per
 
     return sma;
 }
+
+std::vector<double> calculateZScore(const std::vector<double>& closePrices, int period) {
+    std::vector<double> zScore(closePrices.size(), 0.0);
+
+    for (size_t i = period - 1; i < closePrices.size(); ++i) {
+        double sum = 0.0;
+        for (int j = 0; j < period; ++j) {
+            sum += closePrices[i - j];
+        }
+        double sma = sum / period;
+
+        double stddevSum = 0.0;
+        for (int j = 0; j < period; ++j) {
+            stddevSum += std::pow(closePrices[i - j] - sma, 2);
+        }
+        double stddev = std::sqrt(stddevSum / period);
+
+        zScore[i] = (closePrices[i] - sma) / stddev;
+    }
+
+    return zScore;
+}
