@@ -52,3 +52,19 @@ std::vector<int> generateSMACSignals(const std::vector<double>& smaShort, const 
 
     return signals;
 }
+
+std::vector<int> generateZScoreSignals(const std::vector<double>& zScore, double buyThreshold, double sellThreshold) {
+    std::vector<int> signals(zScore.size(), 0);
+
+    for (size_t i = 1; i < zScore.size(); ++i) {
+        if (zScore[i - 1] < buyThreshold && zScore[i] >= buyThreshold) {
+            signals[i] = 1; // Buy signal
+        } else if (zScore[i - 1] > sellThreshold && zScore[i] <= sellThreshold) {
+            signals[i] = -1; // Sell signal
+        } else {
+            signals[i] = 0; // Hold signal
+        }
+    }
+
+    return signals;
+}
