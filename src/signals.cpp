@@ -36,3 +36,19 @@ std::vector<int> generateMACDSignals(const std::vector<double>& macd, int signal
 
     return signals;
 }
+
+std::vector<int> generateSMACSignals(const std::vector<double>& smaShort, const std::vector<double>& smaLong) {
+    std::vector<int> signals(smaShort.size(), 0);
+
+    for (size_t i = 1; i < smaShort.size(); ++i) {
+        if (smaShort[i - 1] < smaLong[i - 1] && smaShort[i] >= smaLong[i]) {
+            signals[i] = 1; // Buy signal
+        } else if (smaShort[i - 1] > smaLong[i - 1] && smaShort[i] <= smaLong[i]) {
+            signals[i] = -1; // Sell signal
+        } else {
+            signals[i] = 0; // Hold signal
+        }
+    }
+
+    return signals;
+}

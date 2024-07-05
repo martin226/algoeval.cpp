@@ -54,3 +54,13 @@ std::vector<double> calculateMACD(const std::vector<double>& closePrices, int sh
 
     return macd;
 }
+
+std::vector<double> calculateSMA(const std::vector<double>& closePrices, int period) {
+    std::vector<double> sma(closePrices.size(), 0.0);
+
+    for (size_t i = period; i < closePrices.size(); ++i) {
+        sma[i] = std::accumulate(closePrices.begin() + i - period, closePrices.begin() + i, 0.0) / period;
+    }
+
+    return sma;
+}
