@@ -29,3 +29,28 @@ std::vector<double> calculateRSI(const std::vector<double>& closePrices, int per
 
     return rsi;
 }
+
+std::vector<double> calculateEMA(const std::vector<double>& closePrices, int period) {
+    std::vector<double> ema(closePrices.size(), 0.0);
+
+    double multiplier = 2.0 / (period + 1);
+    ema[period - 1] = std::accumulate(closePrices.begin(), closePrices.begin() + period, 0.0) / period;
+
+    for (size_t i = period; i < closePrices.size(); ++i) {
+        ema[i] = (closePrices[i] - ema[i - 1]) * multiplier + ema[i - 1];
+    }
+
+    return ema;
+}
+
+std::vector<double> calculateMACD(const std::vector<double>& closePrices, int shortPeriod, int longPeriod) {
+    std::vector<double> macd(closePrices.size(), 0.0);
+    std::vector<double> emaShort = calculateEMA(closePrices, shortPeriod);
+    std::vector<double> emaLong = calculateEMA(closePrices, longPeriod);
+
+    for (size_t i = longPeriod; i < closePrices.size(); ++i) {
+        macd[i] = emaShort[i] - emaLong[i];
+    }
+
+    return macd;
+}
