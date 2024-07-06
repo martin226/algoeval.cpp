@@ -9,6 +9,6 @@ struct BacktestResult {
     std::vector<double> portfolioReturns;
 };
 
-BacktestResult backtest(const std::vector<Data>& data, const std::vector<int>& signals);
+BacktestResult backtest(double capital, const std::vector<Data>& data, const std::vector<int>& signals);
 
 #endif // BACKTESTING_H

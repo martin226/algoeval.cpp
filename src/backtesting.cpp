@@ -1,7 +1,6 @@
 #include "backtesting.h"
 
-BacktestResult backtest(const std::vector<Data>& data, const std::vector<int>& signals) {
-    double capital = 10000.0;
+BacktestResult backtest(double capital, const std::vector<Data>& data, const std::vector<int>& signals) {
     double position = 0.0;
     double value = capital;
 
