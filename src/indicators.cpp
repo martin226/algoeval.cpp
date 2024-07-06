@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <cmath>
 
-std::vector<double> calculateRSI(const std::vector<double>& closePrices, int period) {
+std::vector<double> algoeval::calculateRSI(const std::vector<double>& closePrices, int period) {
     std::vector<double> rsi(closePrices.size(), 0.0);
     std::vector<double> gains(closePrices.size(), 0.0);
     std::vector<double> losses(closePrices.size(), 0.0);
@@ -31,7 +31,7 @@ std::vector<double> calculateRSI(const std::vector<double>& closePrices, int per
     return rsi;
 }
 
-std::vector<double> calculateEMA(const std::vector<double>& closePrices, int period) {
+std::vector<double> algoeval::calculateEMA(const std::vector<double>& closePrices, int period) {
     std::vector<double> ema(closePrices.size(), 0.0);
 
     double multiplier = 2.0 / (period + 1);
@@ -44,7 +44,7 @@ std::vector<double> calculateEMA(const std::vector<double>& closePrices, int per
     return ema;
 }
 
-std::vector<double> calculateMACD(const std::vector<double>& closePrices, int shortPeriod, int longPeriod) {
+std::vector<double> algoeval::calculateMACD(const std::vector<double>& closePrices, int shortPeriod, int longPeriod) {
     std::vector<double> macd(closePrices.size(), 0.0);
     std::vector<double> emaShort = calculateEMA(closePrices, shortPeriod);
     std::vector<double> emaLong = calculateEMA(closePrices, longPeriod);
@@ -56,7 +56,7 @@ std::vector<double> calculateMACD(const std::vector<double>& closePrices, int sh
     return macd;
 }
 
-std::vector<double> calculateSMA(const std::vector<double>& closePrices, int period) {
+std::vector<double> algoeval::calculateSMA(const std::vector<double>& closePrices, int period) {
     std::vector<double> sma(closePrices.size(), 0.0);
 
     for (size_t i = period; i < closePrices.size(); ++i) {
@@ -66,7 +66,7 @@ std::vector<double> calculateSMA(const std::vector<double>& closePrices, int per
     return sma;
 }
 
-std::vector<double> calculateZScore(const std::vector<double>& closePrices, int period) {
+std::vector<double> algoeval::calculateZScore(const std::vector<double>& closePrices, int period) {
     std::vector<double> zScore(closePrices.size(), 0.0);
 
     for (size_t i = period - 1; i < closePrices.size(); ++i) {

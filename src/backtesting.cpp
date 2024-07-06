@@ -1,22 +1,22 @@
 #include "backtesting.h"
 
-void Backtest::setData(const std::vector<Data>& data) {
+void algoeval::Backtest::setData(const std::vector<Data>& data) {
     this->data = data;
 }
 
-void Backtest::setSignals(const std::vector<int>& signals) {
+void algoeval::Backtest::setSignals(const std::vector<int>& signals) {
     this->signals = signals;
 }
 
-std::vector<double> Backtest::getPortfolioValues() const {
+std::vector<double> algoeval::Backtest::getPortfolioValues() const {
     return portfolioValues;
 }
 
-std::vector<double> Backtest::getPortfolioReturns() const {
+std::vector<double> algoeval::Backtest::getPortfolioReturns() const {
     return portfolioReturns;
 }
 
-void Backtest::backtest(double capital) {
+void algoeval::Backtest::backtest(double capital) {
     double position = 0.0;
     double value = capital;
 

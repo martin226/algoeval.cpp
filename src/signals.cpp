@@ -3,7 +3,7 @@
 #include <numeric>
 #include <algorithm>
 
-std::vector<int> generateRSISignals(const std::vector<double>& rsi, double overboughtThreshold, double oversoldThreshold) {
+std::vector<int> algoeval::generateRSISignals(const std::vector<double>& rsi, double overboughtThreshold, double oversoldThreshold) {
     std::vector<int> signals(rsi.size(), 0);
 
     for (size_t i = 1; i < rsi.size(); ++i) {
@@ -19,7 +19,7 @@ std::vector<int> generateRSISignals(const std::vector<double>& rsi, double overb
     return signals;
 }
 
-std::vector<int> generateMACDSignals(const std::vector<double>& macd, int signalPeriod) {
+std::vector<int> algoeval::generateMACDSignals(const std::vector<double>& macd, int signalPeriod) {
     std::vector<int> signals(macd.size(), 0);
 
     std::vector<double> signalLine = calculateEMA(macd, signalPeriod);
@@ -37,7 +37,7 @@ std::vector<int> generateMACDSignals(const std::vector<double>& macd, int signal
     return signals;
 }
 
-std::vector<int> generateSMACSignals(const std::vector<double>& smaShort, const std::vector<double>& smaLong) {
+std::vector<int> algoeval::generateSMACSignals(const std::vector<double>& smaShort, const std::vector<double>& smaLong) {
     std::vector<int> signals(smaShort.size(), 0);
 
     for (size_t i = 1; i < smaShort.size(); ++i) {
@@ -53,7 +53,7 @@ std::vector<int> generateSMACSignals(const std::vector<double>& smaShort, const 
     return signals;
 }
 
-std::vector<int> generateZScoreSignals(const std::vector<double>& zScore, double buyThreshold, double sellThreshold) {
+std::vector<int> algoeval::generateZScoreSignals(const std::vector<double>& zScore, double buyThreshold, double sellThreshold) {
     std::vector<int> signals(zScore.size(), 0);
 
     for (size_t i = 1; i < zScore.size(); ++i) {
