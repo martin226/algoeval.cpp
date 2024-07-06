@@ -4,15 +4,17 @@
 #include <string>
 #include <vector>
 
-struct Data {
-    std::string date;
-    double open;
-    double high;
-    double low;
-    double close;
-    int volume;
-};
+namespace algoeval {
+    struct Data {
+        std::string date;
+        double open;
+        double high;
+        double low;
+        double close;
+        int volume;
+    };
 
-std::vector<Data> readCSV(const std::string& filename);
+    std::vector<Data> readCSV(const std::string& filename);
+}
 
 #endif // DATA_H

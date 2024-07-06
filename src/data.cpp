@@ -4,7 +4,7 @@
 #include <sstream>
 #include <iostream>
 
-std::vector<Data> readCSV(const std::string& filename) {
+std::vector<algoeval::Data> algoeval::readCSV(const std::string& filename) {
     std::ifstream file(filename);
     std::vector<Data> data;
     std::string line;
