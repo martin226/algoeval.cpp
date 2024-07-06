@@ -4,11 +4,18 @@
 #include "data.h"
 #include <vector>
 
-struct BacktestResult {
-    std::vector<double> portfolioValues;
-    std::vector<double> portfolioReturns;
+class Backtest {
+    private:
+        std::vector<Data> data;
+        std::vector<int> signals;
+        std::vector<double> portfolioValues;
+        std::vector<double> portfolioReturns;
+    public:
+        void setData(const std::vector<Data>& data);
+        void setSignals(const std::vector<int>& signals);
+        std::vector<double> getPortfolioValues() const;
+        std::vector<double> getPortfolioReturns() const;
+        void backtest(double capital);
 };
-
-BacktestResult backtest(double capital, const std::vector<Data>& data, const std::vector<int>& signals);
 
 #endif // BACKTESTING_H

@@ -1,11 +1,24 @@
 #include "backtesting.h"
 
-BacktestResult backtest(double capital, const std::vector<Data>& data, const std::vector<int>& signals) {
+void Backtest::setData(const std::vector<Data>& data) {
+    this->data = data;
+}
+
+void Backtest::setSignals(const std::vector<int>& signals) {
+    this->signals = signals;
+}
+
+std::vector<double> Backtest::getPortfolioValues() const {
+    return portfolioValues;
+}
+
+std::vector<double> Backtest::getPortfolioReturns() const {
+    return portfolioReturns;
+}
+
+void Backtest::backtest(double capital) {
     double position = 0.0;
     double value = capital;
-
-    std::vector<double> portfolioValues;
-    std::vector<double> portfolioReturns;
 
     portfolioValues.reserve(data.size());
     portfolioReturns.reserve(data.size());
@@ -31,10 +44,4 @@ BacktestResult backtest(double capital, const std::vector<Data>& data, const std
         double ret = (portfolioValues[i] - portfolioValues[i - 1]) / portfolioValues[i - 1];
         portfolioReturns.push_back(ret);
     }
-
-    BacktestResult result;
-    result.portfolioValues = portfolioValues;
-    result.portfolioReturns = portfolioReturns;
-
-    return result;
 }
